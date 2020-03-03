@@ -17,7 +17,7 @@ class Blog extends Component {
 
   loadBlogs = () => {
     API.getArticle()
-    .then(res => this.setState({ blog: res.data }))
+    .then(res => this.setState({ Blogs: res.data }))
     .catch(err => console.log(err)); 
   }; 
 
