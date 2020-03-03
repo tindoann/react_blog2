@@ -1,5 +1,5 @@
 import React from 'react'; 
-import Articles from './pages/Articles'; 
+import Articles from './pages/Blog'; 
 import Nav from './components/Nav'; 
 
 function App() {
