@@ -6,9 +6,9 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Blog extends Component {
+class Blogs extends Component {
   state = {
-    blog: []
+    blogs: []
   }; 
 
   componentDidMount() {
@@ -16,29 +16,42 @@ class Blog extends Component {
   }
 
   loadBlogs = () => {
-    API.getArticle()
+    API.getArticles()
     .then(res => this.setState({ Blogs: res.data }))
     .catch(err => console.log(err)); 
   }; 
 
+
+  // split the main site of the blog 
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size='md-6'>
             <Jumbotron>
-              <h1>Blog List</h1>
+              <h1>Nav Blog List</h1>
             </Jumbotron>
-            {this.state.blog.length ? (
-              <List>
-                {this.state.blog.map(article => (
-                  <ListItem key={article._id}>
-                    <a href={'/blog/' + article._id}>
-                      <strong>
-                        {article.title} by {article.author}
-                      </strong>
-                    </a>
-                    <DeleteBtn />
+            <form>
+              <Input name='title' placeholder='Title' />
+              <Input name='author' placeholder='Author' />
+              <TextArea name='post' placeholder='Post' />
+              <FormBtn>Submit Post</FormBtn>
+            </form>
+            </Col>
+            <Col size='md-6 sm-12'>
+              <Jumbotron>
+                <h1>Recent Blog Post</h1>
+              </Jumbotron>
+              {this.state.blogs.length ? (
+                <List>
+                  {this.state.blogs.map(article => (
+                    <ListItem key={article._id}>
+                      <a href={'/Blogs/' + article._id}>
+                        <strong>
+                          {article.title} by {article.author}
+                        </strong>
+                      </a>
+                      <DeleteBtn />
                   </ListItem>
                 ))}
               </List>
@@ -52,4 +65,4 @@ class Blog extends Component {
   }
 }
 
-export default Blog; 
+export default Blogs; 
